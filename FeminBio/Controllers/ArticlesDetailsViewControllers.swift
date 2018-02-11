@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class ArticlesDetailsViewControllers: UIViewController {
   var article: Article? = nil
   //MARK: Outlets
@@ -24,14 +24,8 @@ class ArticlesDetailsViewControllers: UIViewController {
   
   override func viewDidLoad() {
         super.viewDidLoad()
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd-MM-YYYY"
-    dateFormatter.timeStyle = DateFormatter.Style.none
-    dateFormatter.dateStyle = DateFormatter.Style.medium
-    self.articleDateLabel.text = dateFormatter.string(from: (article?.date)!)
-    self.articleAuthorLabel.text = article?.author.name
-    self.articleTitleLabel.text = article?.title
-    self.articleDetailsLabel.text = article?.description
+    initData()
+    DownloadImage(imageLink: (self.article?.image.link)!)
         // Do any additional setup after loading the view.
     }
   
@@ -39,16 +33,27 @@ class ArticlesDetailsViewControllers: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+  func initData(){
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd-MM-YYYY"
+    dateFormatter.locale = Locale(identifier: "fr_FR")
+    dateFormatter.timeStyle = DateFormatter.Style.none
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    self.articleDateLabel.text = dateFormatter.string(from: (article?.date)!)
+    self.articleAuthorLabel.text = article?.author.name
+    self.articleTitleLabel.text = article?.title
+    self.articleDetailsLabel.text = article?.description
+  }
+  func DownloadImage(imageLink:String){
+    Alamofire.request(imageLink)
+      .response { response in
+        
+        guard let imageData = response.data else {
+          print("Could not get image from image URL returned in search results")
+          return
+        }
+        self.ArticleImageView.image = UIImage(data: imageData)
     }
-    */
+  }
 
 }

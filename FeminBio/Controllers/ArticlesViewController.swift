@@ -58,10 +58,8 @@ extension ArticlesViewController: UITableViewDelegate,UITableViewDataSource {
     return cell
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
     let ArticleDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ArticlesdetailsVC") as! ArticlesDetailsViewControllers
     ArticleDetailsVC.article = self.articles[indexPath.row]
-    
     self.navigationController?.pushViewController(ArticleDetailsVC, animated: true)
   }
 }
