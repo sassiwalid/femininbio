@@ -10,17 +10,22 @@ import UIKit
 import MBProgressHUD
 class ArticlesViewController: UIViewController {
 var articles = [Article]()
-  
+let network: NetworkManager = NetworkManager.sharedInstance
   @IBOutlet weak var articlesTableView: UITableView!
   override func viewDidLoad() {
     super.viewDidLoad()
-    RunAPI()
-    articlesTableView.dataSource = self
-    articlesTableView.delegate = self
+    // If the network is unreachable show empty page
+    NetworkManager.isUnreachable { _ in
+      let alertController = UIAlertController(title: "Alert!", message: "Vérifier votre connexion Internet", preferredStyle: UIAlertControllerStyle.alert)
+      alertController.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.default,handler: nil))
+      self.present(alertController, animated: true, completion: nil)
+      self.articlesTableView.isHidden = true
+    }
+      RunAPI()
+      self.articlesTableView.dataSource = self
+      self.articlesTableView.delegate = self
+    }
     // Do any additional setup after loading the view, typically from a nib.
- 
-  }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.

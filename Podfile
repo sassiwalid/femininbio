@@ -6,6 +6,7 @@ target 'FeminBio' do
   use_frameworks!
 	pod 'Alamofire', '~> 4.5'
   pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'ReachabilitySwift'
   # Pods for FeminBio
 
 end
