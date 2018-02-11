@@ -31,6 +31,7 @@ class ArticleTableViewCell: UITableViewCell {
   func DownloadImage(imageLink:String){
     Alamofire.request(imageLink)
       .response { response in
+       
         guard let imageData = response.data else {
           print("Could not get image from image URL returned in search results")
           return

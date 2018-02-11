@@ -31,6 +31,7 @@
 		0E190EAB202F3248008F647B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		0E190EAE202F46CF008F647B /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		0E190EB1202F62C6008F647B /* ArticlesDetailsViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesDetailsViewControllers.swift; sourceTree = "<group>"; };
+		0E9651C92030A35500D225A4 /* FeminBio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FeminBio-Bridging-Header.h"; path = "FeminBio/FeminBio-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		4CD7A970BC07E75E000660EF /* Pods_FeminBio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeminBio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5B564BE2BD5B10727D168 /* Pods-FeminBio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeminBio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FeminBio/Pods-FeminBio.debug.xcconfig"; sourceTree = "<group>"; };
 		9782FA8A37580E3512CF518E /* Pods-FeminBio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeminBio.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeminBio/Pods-FeminBio.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				0E190E95202ECD95008F647B /* AppDelegate.swift */,
+				0E9651C92030A35500D225A4 /* FeminBio-Bridging-Header.h */,
 				0E190EAD202F42CF008F647B /* Custom cells */,
 				0E190EAA202F3236008F647B /* Managers */,
 				0E190EA7202F268D008F647B /* Model */,
@@ -219,10 +221,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FeminBio/Pods-FeminBio-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

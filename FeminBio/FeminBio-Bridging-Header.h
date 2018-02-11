@@ -11,3 +11,4 @@
 
 
 #endif /* FeminBio_Bridging_Header_h */
+#import "MBProgressHUD.h"

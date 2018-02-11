@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 class ArticlesViewController: UIViewController {
 var articles = [Article]()
   
@@ -29,11 +29,17 @@ var articles = [Article]()
   {
     let api = APIManager()
     api.loadData(urlString: "https://www.femininbio.com/json/liste-articles",completion:didloadData)
+    DispatchQueue.main.async {
+      MBProgressHUD.showAdded(to: self.view, animated: true)
+    }
   }
   // handling the call back
   func didloadData(articles:[Article])
   {
     self.articles = articles
+    DispatchQueue.main.async {
+      MBProgressHUD.hide(for: self.view, animated: true)
+    }
     articlesTableView.reloadData()
   }
 }
@@ -52,7 +58,11 @@ extension ArticlesViewController: UITableViewDelegate,UITableViewDataSource {
     return cell
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.navigationController?.pushViewController((self.storyboard?.instantiateViewController(withIdentifier: "ArticlesdetailsVC"))!, animated: true)
+    
+    let ArticleDetailsVC = storyboard?.instantiateViewController(withIdentifier: "ArticlesdetailsVC") as! ArticlesDetailsViewControllers
+    ArticleDetailsVC.article = self.articles[indexPath.row]
+    
+    self.navigationController?.pushViewController(ArticleDetailsVC, animated: true)
   }
 }
 

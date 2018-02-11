@@ -9,13 +9,32 @@
 import UIKit
 
 class ArticlesDetailsViewControllers: UIViewController {
-
-    override func viewDidLoad() {
+  var article: Article? = nil
+  //MARK: Outlets
+  @IBOutlet weak var articleDateLabel: UILabel!
+  @IBOutlet weak var articleAuthorLabel: UILabel!
+  @IBOutlet weak var articleDetailsLabel: UILabel!
+  @IBOutlet weak var articleTitleLabel: UILabel!
+  @IBOutlet weak var ArticleImageView: UIImageView!
+  
+  convenience init (article:Article){
+    self.init()
+    self.article = article
+  }
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
-
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd-MM-YYYY"
+    dateFormatter.timeStyle = DateFormatter.Style.none
+    dateFormatter.dateStyle = DateFormatter.Style.medium
+    self.articleDateLabel.text = dateFormatter.string(from: (article?.date)!)
+    self.articleAuthorLabel.text = article?.author.name
+    self.articleTitleLabel.text = article?.title
+    self.articleDetailsLabel.text = article?.description
         // Do any additional setup after loading the view.
     }
-
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
